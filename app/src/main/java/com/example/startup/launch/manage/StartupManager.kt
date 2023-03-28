@@ -13,6 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger
 class StartupManager private constructor(
     private val context: Context,
     private val startupList: List<AndroidStartUp<*>>,
+    // 需要主线程等待异步任务执行完成
+    // 实现等待任务完成后才进入首页的需求
     private val countDownLatch: CountDownLatch
 ) : StartUpFinish {
     private lateinit var startupSortStore: StartupSortStore

@@ -6,6 +6,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
 
 abstract class AndroidStartUp<T> : Startup<T> {
+    // 如果该任务被其他任务依赖，锁存器记录，直到子任务全部启动执行结束后放行
     private val mCountDownLatch = CountDownLatch(getDependenciesCount())
 
     override fun dependencies(): List<Class<out Startup<*>>> {
